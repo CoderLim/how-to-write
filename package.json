@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "汉字笔顺学习小程序",
   "dependencies": {
-    "hanzi-writer-miniprogram": "^1.1.0"
+    "hanzi-writer-miniprogram": "^1.1.0",
+    "hanzi-writer": "2.3.0"
   }
 }
