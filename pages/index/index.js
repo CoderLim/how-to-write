@@ -1,6 +1,6 @@
 // pages/index/index.js
 var createHanziWriterContext = require('hanzi-writer-miniprogram');
-var charFilter = require('../../utils/char-filter');
+var filterChinese = require('../../utils/char-filter').filterChinese;
 
 Page({
   data: {
@@ -16,7 +16,7 @@ Page({
 
   onInput: function(e) {
     var value = e.detail.value;
-    var chars = charFilter.filterChinese(value);
+    var chars = filterChinese(value);
     this.setData({
       inputValue: value,
       chars: chars,
@@ -64,24 +64,32 @@ Page({
 
     var self = this;
     try {
-      self._writerCtx = createHanziWriterContext({
+      var ctx = createHanziWriterContext({
         id: 'hanzi-writer',
         page: self,
         character: char,
         strokeAnimationSpeed: 1,
         delayBetweenStrokes: 300,
         onLoadCharDataSuccess: function() {
+          if (self._writerCtx !== ctx) return; // 已切换到其他字，丢弃
           self.setData({ loading: false });
-          self._writerCtx.animateCharacter({
-            onComplete: function() {
-              self.setData({ animDone: true });
-            },
-          });
+          try {
+            ctx.animateCharacter({
+              onComplete: function() {
+                if (self._writerCtx !== ctx) return;
+                self.setData({ animDone: true });
+              },
+            });
+          } catch(err) {
+            self.setData({ errorMsg: '动画加载失败，请重试' });
+          }
         },
         onLoadCharDataError: function() {
+          if (self._writerCtx !== ctx) return;
           self.setData({ loading: false, errorMsg: '暂不支持该字' });
         },
       });
+      self._writerCtx = ctx;
     } catch(err) {
       self.setData({ loading: false, errorMsg: '初始化失败，请重试' });
     }
