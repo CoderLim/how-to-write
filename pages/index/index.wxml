@@ -49,29 +49,8 @@
       </view>
     </view>
 
-    <!-- 常用字分组 -->
-    <view
-      wx:for="{{commonGroups}}"
-      wx:key="label"
-      wx:for-item="group"
-      class="section"
-    >
-      <view class="section-header">
-        <text class="section-title">{{group.label}}</text>
-      </view>
-      <view class="char-list">
-        <view
-          wx:for="{{group.chars}}"
-          wx:key="*this"
-          wx:for-item="char"
-          class="char-card {{selectedChar === char ? 'char-card--active' : ''}}"
-          bindtap="onSelectChar"
-          data-char="{{char}}"
-        >{{char}}</view>
-      </view>
-    </view>
 
-  </view>
+</view>
 
   <!-- 动画区域 -->
   <view class="animation-area" wx:if="{{selectedChar}}">

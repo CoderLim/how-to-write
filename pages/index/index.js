@@ -2,13 +2,6 @@
 var createHanziWriterContext = require('hanzi-writer-miniprogram');
 var filterChinese = require('../../utils/char-filter').filterChinese;
 
-var COMMON_GROUPS = [
-  { label: '数字', chars: ['一','二','三','四','五','六','七','八','九','十','百','千','万'] },
-  { label: '常用', chars: ['人','大','小','中','上','下','口','手','目','心','日','月'] },
-  { label: '动物', chars: ['鱼','鸟','马','牛','羊','猫','狗','虎','兔','龙','猪','鸡'] },
-  { label: '自然', chars: ['山','水','火','土','木','金','风','雨','云','雪','花','草'] },
-];
-
 var RECENT_KEY = 'recentChars';
 var RECENT_MAX = 12;
 
@@ -21,7 +14,6 @@ Page({
     animDone: false,
     errorMsg: '',
     recentChars: [],
-    commonGroups: COMMON_GROUPS,
   },
 
   _writerCtx: null,
