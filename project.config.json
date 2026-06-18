@@ -1,5 +1,5 @@
 {
-  "appid": "YOUR_APPID_HERE",
+  "appid": "wxd73bd4461c765916",
   "projectname": "how-to-write",
   "description": "汉字笔顺学习小程序",
   "setting": {
@@ -19,10 +19,23 @@
     "minifyWXSS": true,
     "minifyWXML": false,
     "uglifyFileName": false,
-    "ignoreUploadUnusedFiles": true
+    "ignoreUploadUnusedFiles": true,
+    "babelSetting": {
+      "ignore": [],
+      "disablePlugins": [],
+      "outputPath": ""
+    }
   },
   "compileType": "miniprogram",
   "libVersion": "3.4.3",
-  "srcMiniprogramRoot": "./",
-  "condition": {}
+  "srcMiniprogramRoot": "",
+  "condition": {},
+  "packOptions": {
+    "ignore": [],
+    "include": []
+  },
+  "editorSetting": {
+    "tabIndent": "insertSpaces",
+    "tabSize": 2
+  }
 }
