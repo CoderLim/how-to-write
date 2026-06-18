@@ -57,6 +57,21 @@ Page({
     });
   },
 
+  onClearInput: function() {
+    this.setData({
+      inputValue: '',
+      chars: [],
+      selectedChar: null,
+      loading: false,
+      animDone: false,
+      errorMsg: '',
+    });
+    if (this._writerCtx) {
+      this._writerCtx.destroy();
+      this._writerCtx = null;
+    }
+  },
+
   onClearRecent: function() {
     this.setData({ recentChars: [] });
     try { wx.removeStorageSync(RECENT_KEY); } catch (e) { /* ignore */ }

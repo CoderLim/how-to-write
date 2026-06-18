@@ -3,14 +3,21 @@
 
   <!-- 搜索区域 -->
   <view class="search-area">
-    <input
-      class="search-input"
-      placeholder="输入汉字，如：中国"
-      placeholder-class="search-placeholder"
-      bindinput="onInput"
-      value="{{inputValue}}"
-      maxlength="20"
-    />
+    <view class="search-box">
+      <input
+        class="search-input"
+        placeholder="输入汉字，如：中国"
+        placeholder-class="search-placeholder"
+        bindinput="onInput"
+        value="{{inputValue}}"
+        maxlength="20"
+      />
+      <view
+        class="search-clear"
+        wx:if="{{inputValue.length > 0}}"
+        bindtap="onClearInput"
+      >✕</view>
+    </view>
   </view>
 
   <!-- 搜索结果 -->
