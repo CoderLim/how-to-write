@@ -1,1 +1,59 @@
-<!-- TODO -->
+<!-- pages/index/index.wxml -->
+<view class="container">
+
+  <!-- 顶部提示 -->
+  <view class="tip-text">输入不会写的字，看笔顺动画 ✍️</view>
+
+  <!-- 搜索区域 -->
+  <view class="search-area">
+    <input
+      class="search-input"
+      placeholder="输入汉字，如：中国"
+      placeholder-class="search-placeholder"
+      bindinput="onInput"
+      value="{{inputValue}}"
+      maxlength="20"
+    />
+  </view>
+
+  <!-- 字卡列表 -->
+  <view class="char-list" wx:if="{{chars.length > 0}}">
+    <view
+      wx:for="{{chars}}"
+      wx:key="index"
+      class="char-card {{selectedChar === item ? 'char-card--active' : ''}}"
+      bindtap="onSelectChar"
+      data-char="{{item}}"
+    >
+      {{item}}
+    </view>
+  </view>
+
+  <!-- 动画区域 -->
+  <view class="animation-area" wx:if="{{selectedChar}}">
+    <view class="animation-title">「{{selectedChar}}」的笔顺</view>
+
+    <view class="canvas-wrapper">
+      <canvas type="2d" id="hanzi-canvas" class="hanzi-canvas"></canvas>
+      <view class="loading-mask" wx:if="{{loading}}">
+        <text class="loading-text">加载中...</text>
+      </view>
+      <view class="error-mask" wx:if="{{errorMsg}}">
+        <text class="error-text">{{errorMsg}}</text>
+      </view>
+    </view>
+
+    <view
+      class="replay-btn {{animDone ? 'replay-btn--active' : ''}}"
+      bindtap="onReplay"
+    >
+      ▶ 重播
+    </view>
+  </view>
+
+  <!-- 空状态提示 -->
+  <view class="empty-hint" wx:if="{{chars.length === 0 && inputValue.length > 0}}">
+    <text>请输入汉字</text>
+  </view>
+
+</view>
