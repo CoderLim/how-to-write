@@ -81,8 +81,11 @@ Page({
   },
 
   _addToRecent: function(char) {
-    var recent = this.data.recentChars.filter(function(c) { return c !== char; });
-    recent.unshift(char);
+    var recent = this.data.recentChars;
+    // 已在列表中：本次会话不改变顺序
+    if (recent.indexOf(char) !== -1) return;
+    // 新字：加到最前面
+    recent = [char].concat(recent);
     if (recent.length > RECENT_MAX) recent = recent.slice(0, RECENT_MAX);
     this.setData({ recentChars: recent });
     try { wx.setStorageSync(RECENT_KEY, recent); } catch (e) { /* ignore */ }
