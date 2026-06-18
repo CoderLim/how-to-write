@@ -1,9 +1,10 @@
 <!-- pages/index/index.wxml -->
 <view class="container">
 
-  <!-- 搜索区域 -->
+  <!-- 搜索框 -->
   <view class="search-area">
     <view class="search-box">
+      <text class="search-icon">⌕</text>
       <input
         class="search-input"
         placeholder="输入汉字，如：中国"
@@ -12,11 +13,7 @@
         value="{{inputValue}}"
         maxlength="20"
       />
-      <view
-        class="search-clear"
-        wx:if="{{inputValue.length > 0}}"
-        bindtap="onClearInput"
-      >✕</view>
+      <view class="search-clear" wx:if="{{inputValue.length > 0}}" bindtap="onClearInput">✕</view>
     </view>
   </view>
 
@@ -36,16 +33,14 @@
     </view>
   </view>
 
-  <!-- 默认状态：最近查询 + 常用字 -->
-  <view wx:if="{{inputValue.length === 0}}">
-
-    <!-- 最近查询 -->
-    <view class="section" wx:if="{{recentChars.length > 0}}">
-      <view class="section-header">
-        <text class="section-title">最近查询</text>
-        <text class="section-clear" bindtap="onClearRecent">清除</text>
-      </view>
-      <view class="char-list">
+  <!-- 默认状态：最近查询 -->
+  <view wx:if="{{inputValue.length === 0 && recentChars.length > 0}}" class="section">
+    <view class="section-header">
+      <text class="section-title">最近查询</text>
+      <text class="section-clear" bindtap="onClearRecent">清除</text>
+    </view>
+    <scroll-view scroll-x class="char-scroll" show-scrollbar="{{false}}">
+      <view class="char-row">
         <view
           wx:for="{{recentChars}}"
           wx:key="*this"
@@ -54,17 +49,24 @@
           data-char="{{item}}"
         >{{item}}</view>
       </view>
-    </view>
-
-
-</view>
+    </scroll-view>
+  </view>
 
   <!-- 动画区域 -->
   <view class="animation-area" wx:if="{{selectedChar}}">
-    <view class="animation-title">「{{selectedChar}}」的笔顺</view>
+
+    <view class="animation-header">
+      <text class="animation-char-big">{{selectedChar}}</text>
+      <text class="animation-label">的笔顺</text>
+    </view>
 
     <view class="canvas-wrapper">
       <hanzi-writer-view id="hanzi-writer" width="300" height="300" />
+      <!-- 田字格 -->
+      <view class="grid-overlay">
+        <view class="grid-h"></view>
+        <view class="grid-v"></view>
+      </view>
       <view class="loading-mask" wx:if="{{loading}}">
         <text class="loading-text">加载中...</text>
       </view>
@@ -76,9 +78,8 @@
     <view
       class="replay-btn {{animDone ? 'replay-btn--active' : ''}}"
       bindtap="onReplay"
-    >
-      ▶ 重播
-    </view>
+    >▶ 重播</view>
+
   </view>
 
 </view>

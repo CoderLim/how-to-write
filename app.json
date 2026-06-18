@@ -4,9 +4,10 @@
   ],
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
+    "navigationBarBackgroundColor": "#c9473b",
     "navigationBarTitleText": "怎么写",
-    "navigationBarTextStyle": "black"
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#fdf7ee"
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

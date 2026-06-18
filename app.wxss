@@ -1,6 +1,6 @@
 /* app.wxss */
 page {
   font-family: -apple-system, "PingFang SC", "Helvetica Neue", sans-serif;
-  background-color: #f7f7f7;
+  background-color: #fdf7ee;
   box-sizing: border-box;
 }
