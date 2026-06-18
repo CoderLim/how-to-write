@@ -1,10 +1,7 @@
 <!-- pages/index/index.wxml -->
 <view class="container">
 
-  <!-- 顶部提示 -->
-  <view class="tip-text">输入不会写的字，看笔顺动画 ✍️</view>
-
-  <!-- 搜索区域 -->
+<!-- 搜索区域 -->
   <view class="search-area">
     <input
       class="search-input"
