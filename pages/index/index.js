@@ -56,6 +56,13 @@ Page({
     });
   },
 
+  onUnload: function() {
+    if (this._writerCtx) {
+      this._writerCtx.destroy();
+      this._writerCtx = null;
+    }
+  },
+
   _loadChar: function(char) {
     if (this._writerCtx) {
       this._writerCtx.destroy();
