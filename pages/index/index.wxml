@@ -55,11 +55,6 @@
   <!-- 动画区域 -->
   <view class="animation-area" wx:if="{{selectedChar}}">
 
-    <view class="animation-header">
-      <text class="animation-char-big">{{selectedChar}}</text>
-      <text class="animation-label">的笔顺</text>
-    </view>
-
     <view class="canvas-wrapper">
       <hanzi-writer-view id="hanzi-writer" width="300" height="300" />
       <!-- 田字格 -->

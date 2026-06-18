@@ -137,25 +137,6 @@
   border-top: 1rpx solid rgba(0, 0, 0, 0.06);
 }
 
-.animation-header {
-  display: flex;
-  align-items: baseline;
-  margin-bottom: 32rpx;
-  gap: 8rpx;
-}
-
-.animation-char-big {
-  font-size: 72rpx;
-  font-weight: bold;
-  color: #c9473b;
-  line-height: 1;
-}
-
-.animation-label {
-  font-size: 30rpx;
-  color: #aaa;
-}
-
 /* ── 画布 ── */
 .canvas-wrapper {
   position: relative;
