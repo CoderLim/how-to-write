@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "hanzi-writer-view": "hanzi-writer-miniprogram/hanzi-writer-view"
+  }
+}

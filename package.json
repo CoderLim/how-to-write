@@ -1,0 +1,8 @@
+{
+  "name": "how-to-write",
+  "version": "1.0.0",
+  "description": "汉字笔顺学习小程序",
+  "dependencies": {
+    "hanzi-writer-miniprogram": "^1.1.0"
+  }
+}
