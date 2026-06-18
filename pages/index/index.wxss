@@ -53,11 +53,37 @@
   color: #07c160;
 }
 
+/* 分组区块 */
+.section {
+  margin-bottom: 32rpx;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16rpx;
+}
+
+.section-title {
+  font-size: 26rpx;
+  color: #999;
+  font-weight: normal;
+}
+
+.section-clear {
+  font-size: 24rpx;
+  color: #bbb;
+}
+
 /* 动画区域 */
 .animation-area {
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-top: 16rpx;
+  padding-top: 32rpx;
+  border-top: 1rpx solid #f0f0f0;
 }
 
 .animation-title {

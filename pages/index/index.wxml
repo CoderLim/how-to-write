@@ -1,7 +1,7 @@
 <!-- pages/index/index.wxml -->
 <view class="container">
 
-<!-- 搜索区域 -->
+  <!-- 搜索区域 -->
   <view class="search-area">
     <input
       class="search-input"
@@ -13,17 +13,64 @@
     />
   </view>
 
-  <!-- 字卡列表 -->
-  <view class="char-list" wx:if="{{chars.length > 0}}">
-    <view
-      wx:for="{{chars}}"
-      wx:key="index"
-      class="char-card {{selectedChar === item ? 'char-card--active' : ''}}"
-      bindtap="onSelectChar"
-      data-char="{{item}}"
-    >
-      {{item}}
+  <!-- 搜索结果 -->
+  <view wx:if="{{inputValue.length > 0}}">
+    <view class="char-list" wx:if="{{chars.length > 0}}">
+      <view
+        wx:for="{{chars}}"
+        wx:key="*this"
+        class="char-card {{selectedChar === item ? 'char-card--active' : ''}}"
+        bindtap="onSelectChar"
+        data-char="{{item}}"
+      >{{item}}</view>
     </view>
+    <view class="empty-hint" wx:else>
+      <text>请输入汉字</text>
+    </view>
+  </view>
+
+  <!-- 默认状态：最近查询 + 常用字 -->
+  <view wx:if="{{inputValue.length === 0}}">
+
+    <!-- 最近查询 -->
+    <view class="section" wx:if="{{recentChars.length > 0}}">
+      <view class="section-header">
+        <text class="section-title">最近查询</text>
+        <text class="section-clear" bindtap="onClearRecent">清除</text>
+      </view>
+      <view class="char-list">
+        <view
+          wx:for="{{recentChars}}"
+          wx:key="*this"
+          class="char-card {{selectedChar === item ? 'char-card--active' : ''}}"
+          bindtap="onSelectChar"
+          data-char="{{item}}"
+        >{{item}}</view>
+      </view>
+    </view>
+
+    <!-- 常用字分组 -->
+    <view
+      wx:for="{{commonGroups}}"
+      wx:key="label"
+      wx:for-item="group"
+      class="section"
+    >
+      <view class="section-header">
+        <text class="section-title">{{group.label}}</text>
+      </view>
+      <view class="char-list">
+        <view
+          wx:for="{{group.chars}}"
+          wx:key="*this"
+          wx:for-item="char"
+          class="char-card {{selectedChar === char ? 'char-card--active' : ''}}"
+          bindtap="onSelectChar"
+          data-char="{{char}}"
+        >{{char}}</view>
+      </view>
+    </view>
+
   </view>
 
   <!-- 动画区域 -->
@@ -46,11 +93,6 @@
     >
       ▶ 重播
     </view>
-  </view>
-
-  <!-- 空状态提示 -->
-  <view class="empty-hint" wx:if="{{chars.length === 0 && inputValue.length > 0}}">
-    <text>请输入汉字</text>
   </view>
 
 </view>
