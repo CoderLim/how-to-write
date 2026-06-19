@@ -55,6 +55,7 @@
   <!-- 动画区域 -->
   <view class="animation-area" wx:if="{{selectedChar}}">
 
+    <!-- 主动画画布 -->
     <view class="canvas-wrapper">
       <hanzi-writer-view id="hanzi-writer" width="300" height="300" />
       <!-- 田字格 -->
@@ -70,6 +71,27 @@
       </view>
     </view>
 
+    <!-- 笔画分解：平铺换行，每格展示累积到第 n 笔的状态，当前笔红色 -->
+    <view class="stroke-section" wx:if="{{strokeSteps.length > 0}}">
+      <view class="stroke-grid">
+        <view
+          wx:for="{{strokeSteps}}"
+          wx:key="n"
+          class="stroke-card-outer"
+        >
+          <view class="stroke-mini-card">
+            <!-- BG：轮廓 + 已完成笔画（深色） -->
+            <hanzi-writer-view id="sw-bg-{{item.n}}" width="60" height="60" />
+            <!-- RED：当前笔画（红色），绝对定位叠加 -->
+            <view class="sw-red-layer">
+              <hanzi-writer-view id="sw-red-{{item.n}}" width="60" height="60" />
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <!-- 重播 -->
     <view
       class="replay-btn {{animDone ? 'replay-btn--active' : ''}}"
       bindtap="onReplay"
