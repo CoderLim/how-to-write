@@ -81,10 +81,10 @@
         >
           <view class="stroke-mini-card">
             <!-- BG：轮廓 + 已完成笔画（深色） -->
-            <hanzi-writer-view id="sw-bg-{{item.n}}" width="60" height="60" />
+            <hanzi-writer-view id="sw-bg-{{item.n}}" width="40" height="40" />
             <!-- RED：当前笔画（红色），绝对定位叠加 -->
             <view class="sw-red-layer">
-              <hanzi-writer-view id="sw-red-{{item.n}}" width="60" height="60" />
+              <hanzi-writer-view id="sw-red-{{item.n}}" width="40" height="40" />
             </view>
           </view>
         </view>
